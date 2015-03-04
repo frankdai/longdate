@@ -51,8 +51,8 @@ var longDate=new LongDate(document.getElementById('longdate'),options)
 | startMonth|number|Number between 0-11, the month of the first month in the calendar |The last month|
 | startYear |number|The year of the first month in the calendar  | The year of last month|
 | showMonth|number|Number between 1-12. Choose how many month to be rendered|3|
-| weekName|array|Name for each week, starting from Sunday|['Sun','Mon','Tue','Wed','Thu','Fri','Sat']|
-| monthName|array|Name for each month|['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']|
+| weekName|array|Name for each week, starting from Sunday|['Sun' , 'Mon' , 'Tue' , 'Wed' , 'Thu' , 'Fri' , 'Sat']|
+| monthName|array|Name for each month|['Jan' , 'Feb' , 'Mar' , 'Apr' , 'May' , 'Jun' , 'Jul' , 'Aug' , 'Sep' , 'Oct' , 'Nov' , 'Dec']|
 
 
 ## API

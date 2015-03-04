@@ -76,6 +76,11 @@
             }
             return this
         }
+        element.nextRender=function(){
+            //element.render(options.startMonth<(12-3+1)?options.startMonth+3:,options.startYear)
+            element.render(options.startMonth+options.showMonth,options.startYear);
+            options.startMonth=options.startMonth+options.showMonth
+        }
         return element.render(options.startMonth,options.startYear);
         
     }        

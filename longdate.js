@@ -1,30 +1,4 @@
 (function(global){
-    /*getElementsByClassName shim*/
-    if (!document.getElementsByClassName) {
-    Element.prototype.getElementsByClassName = function(search) {
-        var d = document, elements, pattern, i, results = [];
-        if (d.querySelectorAll) { // IE8
-            return d.querySelectorAll("." + search);
-        }
-            if (d.evaluate) { // IE6, IE7
-            pattern = ".//*[contains(concat(' ', @class, ' '), ' " + search + " ')]";
-            elements = d.evaluate(pattern, d, null, 0, null);
-            while ((i = elements.iterateNext())) {
-            results.push(i);
-        }
-    }   else {
-            elements = d.getElementsByTagName("*");
-            pattern = new RegExp("(^|\\s)" + search + "(\\s|$)");
-            for (i = 0; i < elements.length; i++) {
-                if ( pattern.test(elements[i].className) ) {
-                    results.push(elements[i]);
-                }
-            }
-        }
-        return results;
-        }
-    }
-    //var forEach=Array.prototype.forEach;
     var mergeOptions=function(obj1,obj2) {
         var obj3={};
         for (var key in obj1) {
@@ -45,7 +19,7 @@
             'dayEvent':'click',
             'deliveryMethods':[3,7,15],
             'weekName':['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
-            'monthName':['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+            'monthName':['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
         }
         options=mergeOptions(defaults,options);
         var isEndYear;

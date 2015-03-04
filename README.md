@@ -23,20 +23,20 @@ The ID is irrelevant. Just name whatever you want.
 
 This is our suggested CSS rules to be applied. But you can remove all of them for your own style.
 ```CSS
-	.longdate-week, .longdate-day {
-		display:block;
-    	float:left;
-    	width:14.28%;
-    	box-sizing:border-box;
-	}
-	.longdate-month {
-    	box-sizing:border-box;
-    	width:33.33333331%;
-    	float:left
-	}
-	#longdate,.longdate-month {
-    	overflow:hidden;
-	}
+.longdate-week, .longdate-day {
+	display:block;
+    float:left;
+    width:14.28%;
+    box-sizing:border-box;
+}
+.longdate-month {
+    box-sizing:border-box;
+    width:33.33333331%;
+    float:left
+}
+#longdate,.longdate-month {
+    overflow:hidden;
+}
 ```
 
 Then call the function
@@ -50,7 +50,7 @@ var longDate=new LongDate(document.getElementById('longdate'),options)
 | ------- | :--: |------------ | :-------------: |
 | startMonth|number|Number between 0-11, the month of the first month in the calendar |The last month|
 | startYear |number|The year of the first month in the calendar  | The year of last month|
-| showMonth|number|Number between 1-12. Choose how many month to be rendered|3|
+| showMonth|number|Choose how many month to be rendered|3|
 | weekName|array|Name for each week, starting from Sunday|['Sun' , 'Mon' , 'Tue' , 'Wed' , 'Thu' , 'Fri' , 'Sat']|
 | monthName|array|Name for each month|['Jan' , 'Feb' , 'Mar' , 'Apr' , 'May' , 'Jun' , 'Jul' , 'Aug' , 'Sep' , 'Oct' , 'Nov' , 'Dec']|
 

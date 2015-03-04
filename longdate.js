@@ -58,28 +58,32 @@
             today=new Date();
             for (i=firstDay.getDay(),index=1;index<=monthDays;i++,index++) {
                 days[i].textContent=index;
+                days[i].className+=" has-date"
                 if (today.getDate()==index&&monthNum==today.getMonth()&&yearNum==today.getFullYear()) {
                     days[i].className+=' today';
                 }
             }
         }
-        element.render=function(startingMonth,startingYear){
-            var isEndYear,month;
+        element.render=function(startingMonth,startingYear,monthNumber){
+            var isEndYear,month,currentM=startingMonth,currentY=startingYear;
+            if (!monthNumber) {monthNumber=options.showMonth}
             element.innerHTML=" ";
-            for (var index=0;index<options.showMonth;index++) {
+            for (var index=0;index<monthNumber;index++,currentM++) {
                 month=document.createElement('div');
                 month.className='longdate-month';
                 element.appendChild(month);
-                isEndYear=startingMonth>11;
-                markingup(month,isEndYear?startingMonth-12:startingMonth,isEndYear?startingYear+1:startingYear);
-                startingMonth++;
+                if (currentM>11) {currentY++;currentM=0}
+                markingup(month,currentM,currentY);
             }
             return this
         }
-        element.nextRender=function(){
-            //element.render(options.startMonth<(12-3+1)?options.startMonth+3:,options.startYear)
-            element.render(options.startMonth+options.showMonth,options.startYear);
-            options.startMonth=options.startMonth+options.showMonth
+        var month=options.startMonth,year=options.startYear;
+        element.nextRender=function(step){
+            month=month+step;
+            step=step||options.showMonth;
+            if (month>11) {year++;month=month-12;options.startYear++}
+            element.render(month,year);
+            month=month+step;
         }
         return element.render(options.startMonth,options.startYear);
         

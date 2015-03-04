@@ -58,12 +58,12 @@
             today=new Date();
             for (i=firstDay.getDay(),index=1;index<=monthDays;i++,index++) {
                 days[i].textContent=index;
-                if (today.getDate()==index&&monthNum==today.getMonth()) {
+                if (today.getDate()==index&&monthNum==today.getMonth()&&yearNum==today.getFullYear()) {
                     days[i].className+=' today';
                 }
             }
         }
-        this.render=function(startingMonth,startingYear){
+        element.render=function(startingMonth,startingYear){
             var isEndYear,month;
             element.innerHTML=" ";
             for (var index=0;index<options.showMonth;index++) {
@@ -74,8 +74,10 @@
                 markingup(month,isEndYear?startingMonth-12:startingMonth,isEndYear?startingYear+1:startingYear);
                 startingMonth++;
             }
+            return this
         }
-        this.render(options.startMonth,options.startYear)
+        return element.render(options.startMonth,options.startYear);
+        
     }        
     global.LongDate=LongDate;
 })(this)

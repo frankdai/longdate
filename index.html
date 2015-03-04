@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+	<script src="longdate.js"></script>
+	<style>
+	.longdate-week, .longdate-day {
+    	float:left;
+    	width:14.28%;
+    	box-sizing:border-box;
+	}
+
+		/*non-essential*/
+	.longdate-month {
+    	box-sizing:border-box;
+    	width:33.33333331%;
+    	float:left
+	}
+	#longdate,.longdate-month {
+    	overflow:hidden;
+	}
+	.longdate-month {
+		padding:5px;
+	}
+	.longdate-day {
+    	min-height:22px;
+    	border:1px solid #ddd;
+	}
+	.longdate-month-name,.longdate-week,.longdate-day {
+    	text-align:center
+	}
+	.longdate-day.today {
+		color:#ff0000;
+	}
+	</style>
+</head>
+<body>
+<div id='longdate'>
+
+</div>
+<script type="text/javascript">
+	var longdate=new LongDate(document.getElementById('longdate'),{'showMonth':3})
+</script>
+</body>
+</html>
+

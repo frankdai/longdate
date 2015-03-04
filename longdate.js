@@ -9,32 +9,34 @@
         }
         return obj3;
     };
+    var calculateDays=function(num,year){
+            var array1=[0,2,4,6,7,9,11];
+            var array2=[3,5,8,10];
+            if (array1.indexOf(num)>=0) {
+                return 31
+            }
+            if (array2.indexOf(num)>=0) {
+                return 30
+            }
+            if (num==1&&year%4!=0) {
+                return 28
+            }
+            if (num==1&&year%4==0) {
+                return 29
+            }
+        }
     var LongDate=function(element,options) {
         var today=new Date();
         var defaults={
             'startMonth':today.getMonth()==0?11:today.getMonth()-1,
             'startYear':today.getMonth()==0?today.getFullYear()-1:today.getFullYear(),
             'showMonth':3,
-            'dayCallback':function(){},
-            'dayEvent':'click',
-            'deliveryMethods':[3,7,15],
             'weekName':['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
             'monthName':['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
         }
         options=mergeOptions(defaults,options);
-        var isEndYear;
-        var frame=function(element,monthNum,yearNum){
+        var markingup=function(element,monthNum,yearNum){
             var i,div,days,today,start,firstDay,index,monthDays;
-            var isSingle=function(num){
-                var array1=[0,2,4,6,7,9,11];
-                var array2=[3,5,8,10];
-                if (array1.indexOf(num)>=0) {
-                    return 31
-                }
-                if (array2.indexOf(num)>=0) {
-                    return 30
-                }
-            }
             div=document.createElement('div');
             div.className='longdate-month-name';
             div.textContent=options.monthName[monthNum]+' '+yearNum;
@@ -50,14 +52,7 @@
                 div.className='longdate-day';
                 element.appendChild(div);
             }
-            
-            monthDays=isSingle(monthNum);
-            if (monthNum==1&&yearNum%4!=0) {
-                monthDays=28;
-            }
-            if (monthNum==1&&yearNum%4==0) {
-                monthDays=29;
-            }
+            monthDays=calculateDays(monthNum,yearNum);
             days=element.getElementsByClassName('longdate-day');
             firstDay=new Date(yearNum,monthNum,1);
             today=new Date();
@@ -76,12 +71,11 @@
                 month.className='longdate-month';
                 element.appendChild(month);
                 isEndYear=startingMonth>11;
-                frame(month,isEndYear?startingMonth-12:startingMonth,isEndYear?startingYear+1:startingYear);
+                markingup(month,isEndYear?startingMonth-12:startingMonth,isEndYear?startingYear+1:startingYear);
                 startingMonth++;
             }
         }
         this.render(options.startMonth,options.startYear)
-
     }        
     global.LongDate=LongDate;
 })(this)

@@ -3,9 +3,9 @@
 Feature:
 
  * Depend no external library, native Javascript
- * Minimum markup and style
- * Customized number of months to be showed. Maximumly 12 months.
- * API for customized control
+ * Zero markup and style
+ * Choose how many month to be showed at the same time
+ * API for control the calender to move forward and backward, or completely re-render the calendar.
  * Support for IE9+/Chrome/Firefox/Opera
  * Customized name for month and week. Multi-lingual supported
 
@@ -48,17 +48,20 @@ var longDate=new LongDate(document.getElementById('longdate'),options)
 
 | Options | Type | Explaination | Default Value |
 | ------- | :--: |------------ | :-------------: |
-| startMonth|number|Number between 0-11, the month of the first month in the calendar |The last month|
+| startMonth|number|Number between 0-11. The month number of the first month in the calendar |The last month|
 | startYear |number|The year of the first month in the calendar  | The year of last month|
-| showMonth|number|Choose how many month to be rendered|3|
+| showMonth|number|Choose how many month to be showed|3|
 | weekName|array|Name for each week, starting from Sunday|['Sun' , 'Mon' , 'Tue' , 'Wed' , 'Thu' , 'Fri' , 'Sat']|
 | monthName|array|Name for each month|['Jan' , 'Feb' , 'Mar' , 'Apr' , 'May' , 'Jun' , 'Jul' , 'Aug' , 'Sep' , 'Oct' , 'Nov' , 'Dec']|
 
 
 ## API
 ```javascript
-longdate.render(monthNumber,yearNumber);
+longdate.render(monthNumber,yearNumber,[monthNumber]);
 longdate.render(0,2015); //starting rendering the calendar from Jan, 2015
+longdate.render(0,2015,12) //starting rendering 12 month calendar starting from Jan, 2015
+longdate.prev() //change the calendar to previous sets of month
+longdate.next() //change the calendar to next sets of month
 ```
 ## Others
-If current browser day is matched, a 'today' class will be added to the element of current date for better styling. 
+If current browser day is matched, a 'today' class will be added to the element of current date for better styling. Non-empty day cell will have a 'has-date' class name added. 

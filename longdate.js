@@ -35,7 +35,7 @@
             'monthName':['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
         }
         options=mergeOptions(defaults,options);
-        var markingup=function(element,monthNum,yearNum){
+        var renderer=function(element,monthNum,yearNum){
             var i,div,days,today,start,firstDay,index,monthDays;
             div=document.createElement('div');
             div.className='longdate-month-name';
@@ -74,7 +74,7 @@
                 month.className='longdate-month';
                 element.appendChild(month);
                 if (currentM>11) {currentY++;currentM=0}
-                markingup(month,currentM,currentY);
+                renderer(month,currentM,currentY);
             }
             return this
         }

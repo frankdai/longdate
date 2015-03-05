@@ -64,7 +64,8 @@
                 }
             }
         }
-        element.render=function(startingMonth,startingYear,monthNumber){
+        var month=options.startMonth,year=options.startYear;
+        this.render=function(startingMonth,startingYear,monthNumber){
             var isEndYear,month,currentM=startingMonth,currentY=startingYear;
             if (!monthNumber) {monthNumber=options.showMonth}
             element.innerHTML=" ";
@@ -77,16 +78,27 @@
             }
             return this
         }
-        var month=options.startMonth,year=options.startYear;
-        element.nextRender=function(step){
+        this.next=function(){
+            var step=options.showMonth;
+            if (month+step>11) {
+                year++;
+                month=month-12;
+            }
+            this.render(month+step,year);
             month=month+step;
-            step=step||options.showMonth;
-            if (month>11) {year++;month=month-12;options.startYear++}
-            element.render(month,year);
-            month=month+step;
+            return this
         }
-        return element.render(options.startMonth,options.startYear);
-        
+        this.prev=function(){
+            var step=options.showMonth;
+            if (month-step<0) {
+                year--;
+                month=12+month;
+            }
+            this.render(month-step,year);
+            month=month-step;
+            return this
+        }
+        return this.render(options.startMonth,options.startYear);
     }        
     global.LongDate=LongDate;
 })(this)

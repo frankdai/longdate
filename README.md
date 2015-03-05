@@ -19,30 +19,11 @@ The HTML markup is like this:
 <div id="longdate">
 </div>
 ```
-The ID is irrelevant. Just name whatever you want. 
-
-This is our suggested CSS rules to be applied. But you can remove all of them for your own style.
-```CSS
-.longdate-week, .longdate-day {
-	display:block;
-    float:left;
-    width:14.28%;
-    box-sizing:border-box;
-}
-.longdate-month {
-    box-sizing:border-box;
-    width:33.33333331%;
-    float:left
-}
-#longdate,.longdate-month {
-    overflow:hidden;
-}
-```
-
-Then call the function
+The ID is irrelevant. Just name whatever you want. Then call the function
 ```javascript
-var longDate=new LongDate(document.getElementById('longdate'),options)
+var longDate=new LongDate(document.getElementById('longdate'),options) 
 ```
+Options are plain JSON object which are explained below.
 
 ## Options
 

@@ -3,35 +3,33 @@
 <head>
 	<script src="longdate.js"></script>
 	<style>
-	.longdate-week, .longdate-day {
-		display:block;
-    	float:left;
-    	width:14.28%;
-    	box-sizing:border-box;
+	body {
+		font-family: monospace;
+		font-size: 1.1em;
 	}
-
-		/*non-essential*/
-	.longdate-month {
-    	box-sizing:border-box;
-    	width:33.33333331%;
-    	float:left
+	td {
+		text-align: center;
 	}
-	#longdate,.longdate-month {
-    	overflow:hidden;
-	}
-	.longdate-month {
-		padding:5px;
+	table {
+		border-collapse: collapse;
+		border-spacing:0;
 	}
 	.longdate-day {
-    	min-height:22px;
-    	border:1px solid #ddd;
-	}
-	.longdate-month-name,.longdate-week,.longdate-day {
-    	text-align:center
+		border: 1px solid #acacac;
+		height:22px;
 	}
 	.longdate-day.today {
 		color:#ff0000;
 	}
+	.longdate-month {
+		width:32.3333331%;
+		float:left;
+		margin-right:1%;
+	}
+	#longdate {
+		overflow:hidden;
+	}
+
 	</style>
 </head>
 <body>
@@ -39,8 +37,10 @@
 
 </div>
 <script type="text/javascript">
-	var longdate=new LongDate(document.getElementById('longdate'),{'showMonth':1,'startMonth':new Date().getMonth()})
+	var longdate=new LongDate(document.getElementById('longdate'),{'showMonth':3})
 </script>
+
+
 </body>
 </html>
 

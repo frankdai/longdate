@@ -36,22 +36,20 @@
         }
         options=mergeOptions(defaults,options);
         var renderer=function(element,monthNum,yearNum){
-            var i,div,days,today,start,firstDay,index,monthDays;
-            div=document.createElement('div');
-            div.className='longdate-month-name';
-            div.textContent=options.monthName[monthNum]+' '+yearNum;
-            element.appendChild(div);
+            var i,div,days,today,start,firstDay,index,monthDays,divhtml=" ",weekhtml=" ",trhtml=" ",tdhtml=" ";
+            divhtml='<thead><tr><td colspan="7" class="longdate-month-name">'+options.monthName[monthNum]+' '+yearNum+'</td></tr></thead>';
             for (i=0;i<7;i++) {
-                div=document.createElement('div');
-                div.className='longdate-week';
-                div.textContent=options.weekName[i];
-                element.appendChild(div);
+                weekhtml+='<th>'+options.weekName[i]+'</th>';
             }
-            for (i=0;i<42;i++) {
-                div=document.createElement('div');
-                div.className='longdate-day';
-                element.appendChild(div);
+            weekhtml='<tr class="longdate-week">'+weekhtml+'</tr>'
+            for (i=1;i<=42;i++) {
+                tdhtml+='<td class="longdate-day"></td>'
+                if ((i%7==0)) {
+                    trhtml+='<tr>'+tdhtml+'</tr>';
+                    tdhtml="";
+                }
             }
+            element.innerHTML=divhtml+'<tbody>'+weekhtml+trhtml+'</tbody>';
             monthDays=calculateDays(monthNum,yearNum);
             days=element.getElementsByClassName('longdate-day');
             firstDay=new Date(yearNum,monthNum,1);
@@ -70,11 +68,11 @@
             if (!monthNumber) {monthNumber=options.showMonth}
             element.innerHTML=" ";
             for (var index=0;index<monthNumber;index++,currentM++) {
-                month=document.createElement('div');
+                month=document.createElement('table');
                 month.className='longdate-month';
-                element.appendChild(month);
                 if (currentM>11) {currentY++;currentM=0}
                 renderer(month,currentM,currentY);
+                element.appendChild(month);
             }
             return this
         }

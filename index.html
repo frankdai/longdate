@@ -29,15 +29,32 @@
 	#longdate {
 		overflow:hidden;
 	}
-
+	.control {
+		text-align: center;
+		margin-top: 15px
+	}
+	.control span {
+		display:inline-block;
+		width:150px;
+		text-align: center;
+		border:1px solid #efefef;
+		background-color: #eeeeee;
+		cursor:pointer;
+	}
 	</style>
 </head>
 <body>
 <div id='longdate'>
 
 </div>
+<div class="control">
+	<span id="prev">Previous Months</span>
+	<span id="next">Next Months</span>
+</div>
 <script type="text/javascript">
-	var longdate=new LongDate(document.getElementById('longdate'),{'showMonth':3})
+	var longdate=new LongDate(document.getElementById('longdate'),{'showMonth':3});
+	document.getElementById('prev').onclick=function(){longdate.prev()};
+	document.getElementById('next').onclick=function(){longdate.next()};
 </script>
 
 

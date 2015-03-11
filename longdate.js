@@ -25,6 +25,13 @@
                 return 29
             }
         }
+    function setTable(table,html){
+        var temp=document.createElement('div');
+        var children,replaced;
+        temp.innerHTML='<table class="longdate-month">'+html+'</table>';
+        table.appendChild(temp);
+        replaced=table.replaceChild(temp.firstChild,temp);
+    }
     var LongDate=function(element,options) {
         var today=new Date();
         var defaults={
@@ -49,7 +56,7 @@
                     tdhtml="";
                 }
             }
-            element.innerHTML=divhtml+'<tbody>'+weekhtml+trhtml+'</tbody>';
+            setTable(element,divhtml+'<tbody>'+weekhtml+trhtml+'</tbody>');
             monthDays=calculateDays(monthNum,yearNum);
             days=element.getElementsByClassName('longdate-day');
             firstDay=new Date(yearNum,monthNum,1);
@@ -68,8 +75,7 @@
             if (!monthNumber) {monthNumber=options.showMonth}
             element.innerHTML=" ";
             for (var index=0;index<monthNumber;index++,currentM++) {
-                month=document.createElement('table');
-                month.className='longdate-month';
+                month=document.createElement('div');
                 if (currentM>11) {currentY++;currentM=0}
                 renderer(month,currentM,currentY);
                 element.appendChild(month);

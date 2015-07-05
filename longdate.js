@@ -28,11 +28,12 @@
     var LongDate=function(element,options) {
         var today=new Date();
         var defaults={
-            'startMonth':today.getMonth()==0?11:today.getMonth()-1,
+            'startMonth':today.getMonth(),
             'startYear':today.getMonth()==0?today.getFullYear()-1:today.getFullYear(),
-            'showMonth':3,
+            'showMonth':1,
             'weekName':['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
-            'monthName':['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+            'monthName':['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+            'onpick':function(){}
         }
         options=mergeOptions(defaults,options);
         var renderer=function(element,monthNum,yearNum){
@@ -56,6 +57,9 @@
             today=new Date();
             for (i=firstDay.getDay(),index=1;index<=monthDays;i++,index++) {
                 days[i].textContent=index;
+                days[i].onclick=(function(y,m,i){
+                	return options.onpick.bind(this,y,m+1,i);
+                })(yearNum,monthNum,index);
                 days[i].className+=" has-date"
                 if (today.getDate()==index&&monthNum==today.getMonth()&&yearNum==today.getFullYear()) {
                     days[i].className+=' today';

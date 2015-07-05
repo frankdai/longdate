@@ -34,7 +34,7 @@ Options are plain JSON object which are explained below.
 | showMonth|number|Choose how many month to be showed|3|
 | weekName|array|Name for each week, starting from Sunday|['Sun' , 'Mon' , 'Tue' , 'Wed' , 'Thu' , 'Fri' , 'Sat']|
 | monthName|array|Name for each month|['Jan' , 'Feb' , 'Mar' , 'Apr' , 'May' , 'Jun' , 'Jul' , 'Aug' , 'Sep' , 'Oct' , 'Nov' , 'Dec']|
-
+| onpick|function|callback to be fired when clicked on the date|first three arguments of the callback will be year,month,date,e.g.2015,1,15|
 
 ## API
 ```javascript
